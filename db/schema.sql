@@ -1,5 +1,6 @@
 
-DROP TABLE IF EXISTS pairings_db;
+DROP DATABASE IF EXISTS pairings_db;
+CREATE DATABASE pairings_db;
 
 USE pairings_db;
 
