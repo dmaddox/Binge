@@ -1,0 +1,26 @@
+{
+  "name": "binge",
+  "version": "1.0.0",
+  "description": "Your guide to a full night of consuming.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmaddox/Binge.git"
+  },
+  "author": "dmx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmaddox/Binge/issues"
+  },
+  "homepage": "https://github.com/dmaddox/Binge#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "sequelize": "^4.28.6"
+  }
+}
