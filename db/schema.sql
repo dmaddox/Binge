@@ -16,4 +16,4 @@ CREATE TABLE pairs
 	drink_url varchar(255),
 	user_id int,
 	PRIMARY KEY (pair_id)
-);
+); 
