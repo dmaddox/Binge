@@ -1,20 +1,13 @@
 body {
+    background-size: 100%;
     background-color:black;
  }
  
  .container {
-     padding:20px;
-     position: relative;
      margin:auto;
      text-align: center;
- }
- .form-inline .form-group { margin-right:10px; }
- .well-primary {
- color: rgb(255, 255, 255);
- background-color: rgb(66, 139, 202);
- border-color: rgb(53, 126, 189);
- }
- .glyphicon { margin-right:5px; }
+     }
+
 
  img {
      padding-top:50px;
@@ -27,15 +20,23 @@ body {
  }
  
  .button {
-     float: right;
+     float:right;
      background-color: 	#E4801D;
      border-radius: 25px;
      color: black;
      padding: 10px 22px;
      text-align: center;
+     text-decoration: none;
+     display: inline-block;
      font-size: 16px;
      margin: 4px 2px;
      cursor: pointer;
  }
 
- 
+ .form-inline .form-group { margin-right:10px; }
+ .well-primary {
+ color: rgb(255, 255, 255);
+ background-color: rgb(66, 139, 202);
+ border-color: rgb(53, 126, 189);
+ }
+ .glyphicon { margin-right:5px; }
