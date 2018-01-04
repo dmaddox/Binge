@@ -15,12 +15,12 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
-var db = require("./models");
+
 
 // Sets up the Express app to handle data parsing
 app.use(methodOverride('_method'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
@@ -42,6 +42,7 @@ app.set('view engine', 'handlebars');
 // require("./routes/html-routes.js")(app);
 require("./routes/view-api-routes.js")(app);
 // require("./routes/post-api-routes.js")(app);
+var db = require("./models");
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
