@@ -7,7 +7,8 @@ body {
      margin:auto;
      text-align: center;
      }
-     
+
+
  img {
      padding-top:50px;
      float:left;
@@ -15,7 +16,7 @@ body {
  
  .glyphicon {
      color:	#E4801D;
-     font-size: 300%;
+     font-size: 200%;
  }
  
  .button {
@@ -31,3 +32,11 @@ body {
      margin: 4px 2px;
      cursor: pointer;
  }
+
+ .form-inline .form-group { margin-right:10px; }
+ .well-primary {
+ color: rgb(255, 255, 255);
+ background-color: rgb(66, 139, 202);
+ border-color: rgb(53, 126, 189);
+ }
+ .glyphicon { margin-right:5px; }

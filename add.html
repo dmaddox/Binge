@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<title>Binge | Add to List</title>
 		<!-- Bootstrap -->
   
@@ -13,8 +14,14 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type='text/javascript'
+	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type='text/javascript'
+	src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
 		<!-- CSS -->
-    <link rel="stylesheet" href="assets/css/view.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/add.css" type="text/css">
     <link rel="stylesheet"  href="assets/css/reset.css" type="text/css">
 		<!-- GOOGLEFONTS -->
 		<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -34,8 +41,124 @@
             </section>
             <br>
             <br>
-
-        
-        </div>
+            <br>
+            <br>
+           
+            <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-book"> Book
+                                            </span></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="Name">Name</label>
+                                                        <input type="text" class="form-control" id='name' placeholder="Your Name" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="title">Book Title</label>
+                                                        <input type="text" class="form-control" id'title' placeholder="Book Title" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="shorttitle">Meal</label>
+                                                        <input type="text" class="form-control" id='meal' placeholder="Meal Name" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                    <label for="title">Beverage</label>
+                                                        <input type="text" class="form-control" id='drink' placeholder="Drink Name" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- TV Series  -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-expand"> Tv-Shows</span></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                                <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="Name">Name</label>
+                                                                    <input type="text" class="form-control" id='name' placeholder="Your Name" required />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="title">Series Title</label>
+                                                                    <input type="text" class="form-control" id'title' placeholder="Series Title" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="shorttitle">Meal</label>
+                                                                    <input type="text" class="form-control" id='meal' placeholder="Meal Name" required />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                <label for="title">Beverage</label>
+                                                                    <input type="text" class="form-control" id='drink' placeholder="Drink Name" required/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+<!-- Movies -->
+                                <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-film"> Movies
+                                                </span></a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                        <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="Name">Name</label>
+                                                                    <input type="text" class="form-control" id='name' placeholder="Your Name" required />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="title">Movie Title</label>
+                                                                    <input type="text" class="form-control" id'title' placeholder="Movie Title" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="shorttitle">Meal</label>
+                                                                    <input type="text" class="form-control" id='meal' placeholder="Meal Name" required />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                <label for="title">Beverage</label>
+                                                                    <input type="text" class="form-control" id='drink' placeholder="Drink Name" required/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
     </body>
     </html>
