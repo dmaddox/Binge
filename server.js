@@ -6,6 +6,9 @@
 // =============================================================
 var express = require('express');
 var bodyParser = require('body-parser');
+
+//Sets up Handlebars
+// =============================================================
 var exphbs = require('express-handlebars');
 var methodOverride = require('method-override');
 
@@ -15,7 +18,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
-
+var db = require("./models");
 
 // Sets up the Express app to handle data parsing
 app.use(methodOverride('_method'));
@@ -41,8 +44,7 @@ app.set('view engine', 'handlebars');
 // TO BE UPDATED
 require("./routes/html-routes.js")(app);
 require("./routes/view-api-routes.js")(app);
-// require("./routes/post-api-routes.js")(app);
-// require("./routes/submit-api-routes.js")(app);
+require("./routes/post-api-routes.js")(app);
 
 var db = require("./models");
 
