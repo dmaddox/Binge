@@ -1,0 +1,33 @@
+body {
+    background-size: 100%;
+    background-color:black;
+ }
+ 
+ .container {
+     margin:auto;
+     text-align: center;
+     }
+     
+ img {
+     padding-top:50px;
+     float:left;
+ }
+ 
+ .glyphicon {
+     color:	#E4801D;
+     font-size: 300%;
+ }
+ 
+ .button {
+     float:right;
+     background-color: 	#E4801D;
+     border-radius: 25px;
+     color: black;
+     padding: 10px 22px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+ }
