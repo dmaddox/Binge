@@ -39,9 +39,12 @@ app.set('view engine', 'handlebars');
 // Routes
 // =============================================================
 // TO BE UPDATED
-// require("./routes/html-routes.js")(app);
+
+require("./routes/html-routes.js")(app);
 require("./routes/view-api-routes.js")(app);
-require("./routes/post-api-routes.js")(app);
+// require("./routes/post-api-routes.js")(app);
+
+
 var db = require("./models");
 
 // Syncing our sequelize models and then starting our Express app
