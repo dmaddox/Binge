@@ -4,7 +4,6 @@ module.exports = function(app) {
 
   // Get route for getting all of the pairings
   app.get("/api/view", function(req, res) {
-    console.log(db);
     // findAll to return all entries
     db.Pairs.findAll({}).then(function(dbPairing) {
       res.json(dbPairing);
