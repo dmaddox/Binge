@@ -17,6 +17,15 @@ body {
      color:	#E4801D;
      font-size: 300%;
  }
+
+ table, th, td {
+    border: 1px solid ;
+    color: #E4801D;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
  
  .button {
      float:right;
