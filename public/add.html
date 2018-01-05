@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-            <link rel="icon" href="assets/images/bingelogosm.png" type="image/x-icon"/>
+            <link rel="icon" href="images/bingelogosm.png" type="image/x-icon"/>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
@@ -39,18 +39,15 @@
            
 
             <section class="buttons">
-                <a href="#" class="button"> View List</a>
-                <a href="#" class="button"> Add to List</a>
+                <a href="./view" class="button"> View List</a>
+                <a href="./add" class="button"> Add to List</a>
             </section>
             <br>
             <br>
             <br>
             <br>
-           
-           
-           
-            <div class="container">
-                    <div class="row">
+            <div class="container form_input">
+                    <form class="row">
                         <div class="col-md-12">
                             <div class="panel-group" id="accordion">
                                 <div class="panel panel-default">
@@ -66,21 +63,21 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="Name">Name</label>
-                                                        <input type="text" class="form-control" id='name' placeholder="Your Name" required />
+                                                        <input type="text" class="form-control" id='book_name' placeholder="Your Name" />
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="title">Book Title</label>
-                                                        <input type="text" class="form-control" id'title' placeholder="Book Title" required />
+                                                        <input type="text" class="form-control" id='book_title' placeholder="Book Title" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="shorttitle">Meal</label>
-                                                        <input type="text" class="form-control" id='meal' placeholder="Meal Name" required />
+                                                        <input type="text" class="form-control" id='book_meal' placeholder="Meal Name" />
                                                     </div>
                                                     <div class="form-group">
                                                     <label for="title">Beverage</label>
-                                                        <input type="text" class="form-control" id='drink' placeholder="Drink Name" required />
+                                                        <input type="text" class="form-control" id='book_drink' placeholder="Drink Name" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,21 +98,21 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="Name">Name</label>
-                                                                    <input type="text" class="form-control" id='name' placeholder="Your Name" required />
+                                                                    <input type="text" class="form-control" id='show_name' placeholder="Your Name" />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="title">Series Title</label>
-                                                                    <input type="text" class="form-control" id'title' placeholder="Series Title" required />
+                                                                    <input type="text" class="form-control" id='show_title' placeholder="Series Title" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="shorttitle">Meal</label>
-                                                                    <input type="text" class="form-control" id='meal' placeholder="Meal Name" required />
+                                                                    <input type="text" class="form-control" id='show_meal' placeholder="Meal Name" />
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label for="title">Beverage</label>
-                                                                    <input type="text" class="form-control" id='drink' placeholder="Drink Name" required/>
+                                                                    <input type="text" class="form-control" id='show_drink' placeholder="Drink Name"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -137,21 +134,21 @@
                                                         <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="Name">Name</label>
-                                                                    <input type="text" class="form-control" id='name' placeholder="Your Name" required />
+                                                                    <input type="text" class="form-control" id='movie_name' placeholder="Your Name" />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="title">Movie Title</label>
-                                                                    <input type="text" class="form-control" id'title' placeholder="Movie Title" required />
+                                                                    <input type="text" class="form-control" id='movie_title' placeholder="Movie Title" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="shorttitle">Meal</label>
-                                                                    <input type="text" class="form-control" id='meal' placeholder="Meal Name" required />
+                                                                    <input type="text" class="form-control" id='movie_meal' placeholder="Meal Name" />
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label for="title">Beverage</label>
-                                                                    <input type="text" class="form-control" id='drink' placeholder="Drink Name" required/>
+                                                                    <input type="text" class="form-control" id='movie_drink' placeholder="Drink Name"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -162,9 +159,10 @@
                                     </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-          
+                        <button type="submit" class="btn btn-success submit">Submit</button>
+                    </form><!--  End main row (wrapping accordian) -->
+                    
+                </div> <!-- End Container -->
+    <script src="./js/add.js"></script>
     </body>
     </html>
