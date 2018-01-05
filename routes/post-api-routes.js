@@ -13,19 +13,12 @@ var db = require("../models");
 module.exports = function(app) {
 
   // POST route for saving a new post
-  app.post("/api/view", function(req, res) {
+  app.post("/api/pairing", function(req, res) {
+    console.log(req.body);
+    console.log(req.body.media_type);
     // this will pull in an object from the user's input
     // for now i am testing with a specific entry
-    db.Pairs.create({
-        media_type: "movie",
-        media_title: "Baywatch",
-        food_name: "Chicken Wings",
-        recipe_url: null,
-        playlist_url: null,
-        drink_name: "Mai Thai",
-        drink_url: null,
-        user_id: 3
-    }).then(function(dbPairing) {
+    db.Pairs.create(req.body).then(function(dbPairing) {
       // confirms to js file that *something* resulted
       res.json(dbPairing);
     });
