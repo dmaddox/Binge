@@ -29,15 +29,22 @@ $(document).ready(function() {
             break;
         case "#collapseThree":
             mediaTypeSelect = "movie";
+            break;
         default:
           mediaTypeSelect = "book";
     }
-
+    console.log(mediaTypeInput);
+    console.log(mediaTypeSelect);
     // identify & store the submitter's name, the media title, the paired meal & bevereage
     nameInput = $("#" + mediaTypeSelect + "_name").val().trim();
     titleInput = $("#" + mediaTypeSelect + "_title").val().trim();
     mealInput = $("#" + mediaTypeSelect + "_meal").val().trim();
     drinkInput = $("#" + mediaTypeSelect + "_drink").val().trim();
+
+    console.log(nameInput);
+    console.log(titleInput);
+    console.log(mealInput);
+    console.log(drinkInput);
 
     // Wont submit the post if we are missing a nameInput or titleInput
     if (!nameInput || !titleInput) {
