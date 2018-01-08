@@ -60,6 +60,10 @@ $(document).ready(function() {
       return;
     }
 
+    // capitalize first letter of mediaTypeSelect value
+    var firstCharUpper = mediaTypeSelect.charAt(0).toUpperCase();
+    mediaTypeSelect = mediaTypeSelect.replace(mediaTypeSelect.charAt(0), firstCharUpper)
+
     // Constructing a newPair object to hand to the database w/ submitted info
     var newPair = {
       media_type: mediaTypeSelect,
