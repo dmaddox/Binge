@@ -22,6 +22,7 @@ module.exports = function(sequelize, DataTypes) {
     playlist_url: DataTypes.STRING(512),
     drink_name: DataTypes.STRING,
     drink_url: DataTypes.STRING(512),
+    user_name: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
     pairing_score: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,

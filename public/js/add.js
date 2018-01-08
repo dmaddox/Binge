@@ -64,7 +64,7 @@ $(document).ready(function() {
       drink_name: drinkInput,
       recipe_url: mealUrlInput,
       drink_url: drinkUrlInput,
-      user_id: nameInput,
+      user_name: nameInput,
     };
 
     // Run submitPair to create a whole new pairing
