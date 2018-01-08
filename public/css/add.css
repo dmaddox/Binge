@@ -70,7 +70,9 @@ body {
 
 
  #validation-message {
+     margin:auto;
     color:red;
     background-color:rgba(54, 52, 52, 0.8);
     border-radius:25px;
+    max-width:325px;
  }

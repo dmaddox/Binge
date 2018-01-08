@@ -124,7 +124,8 @@ var pairs;
     }
     pairsContainer.empty();
     var messageh2 = $("<h2>");
-    messageh2.css({ "text-align": "center", "margin-top": "50px" });
+    messageh2.addClass ("nothing-found");
+    messageh2.css({ "text-align": "center" });
     messageh2.html("No posts yet" + partial + ", navigate <a href='/add" + query +
     "'>here</a> in order to get started.");
     pairsContainer.append(messageh2);
