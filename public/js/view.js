@@ -76,7 +76,7 @@ var pairs;
   	var newPairTitle=$("<td>");
   	newPairTitle.addClass("pair-row-title");
   	var newPairTitleLink=$("<a>");
-  	if (pair.media_type=="book"){
+  	if (pair.media_type=="book"||pair.media_type=="Book"){
   	newPairTitleLink.attr("href","https://www.amazon.com/s/?url=search-alias%3Dstripbooks&field-keywords="+pair.media_title);
   	} else {
   	newPairTitleLink.attr("href","https://www.justwatch.com/us/search?q="+pair.media_title);
