@@ -14,6 +14,8 @@ $(document).ready(function() {
   // A function for handling what happens when the form to create a new post is submitted
   function handleFormSubmit(event) {
     event.preventDefault();
+    // clear out the error messages
+    $("#validation-message").html("");
 
     // Identify which media type the user input data into
     // ==================================================
@@ -51,8 +53,10 @@ $(document).ready(function() {
     console.log(mealUrlInput);
 
     // Wont submit the post if we are missing a nameInput or titleInput
-    if (!nameInput || !titleInput) {
+    if (!nameInput || !titleInput || !mealInput && !drinkInput) {
       console.log("User must input an id or title!");
+      // call validateMessage to display the proper error message to the user
+      validateMessage(nameInput, titleInput, mealInput, drinkInput, drinkUrlInput, mealUrlInput, mediaTypeSelect);
       return;
     }
 
@@ -79,3 +83,16 @@ $(document).ready(function() {
   }
 
 });
+
+// instruct the user on what fields they need to fill in
+function validateMessage(name, title, meal, drink, drinkURL, mealURL, mediaType) {
+  if (!name) {
+    $("#validation-message").append("<p>Don't forget to tell us your name!</p>");
+  };
+  if (!title) {
+    $("#validation-message").append("<p>Don't forget to input the " + mediaType + " title!</p>");
+  };
+  if (!meal && !drink) {
+    $("#validation-message").append("<p>Don't forget to pair your " + mediaType + " with either a meal or a drink!</p>");
+  };
+};
