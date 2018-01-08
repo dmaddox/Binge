@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 	console.log("view.js reporting for duty");
 
-var pairsContainer=$("#db-view");
+var pairsContainer=$("#pair-table");
 
 var pairs;
 
@@ -43,17 +43,53 @@ var pairs;
 
   // InitializeRows handles appending all of our constructed post HTML inside pairsContainer
   function initializeRows() {
-    pairsContainer.empty();
-    // var postsToAdd = [];
-    // for (var i = 0; i < posts.length; i++) {
-    //   postsToAdd.push(createNewRow(posts[i]));
-    // }
-    var pairData=JSON.stringify(pairs);
-    console.log(pairData);
-         pairsContainer.append("pizza");
-     pairsContainer.append(pairData);
+    // pairsContainer.empty();
+    var pairsToAdd = [];
+    for (var i = 0; i < pairs.length; i++) {
+      pairsToAdd.push(createNewRow(pairs[i]));
+    }
+    // var pairData=JSON.stringify(pairs);
+    // console.log(pairData);
+         // pairsContainer.append("pizza");
+     pairsContainer.append(pairsToAdd);
+     console.log(pairsToAdd);
 
   }
+
+  function createNewRow(pair){
+  	console.log("createNewRow running");
+  	// create the row and fields
+  	// add classes to the row and fields
+  	// put api data into fields
+  	//append fields to row
+  	var newPairRow=$("<tr>");
+  	newPairRow.addClass("pair-row");
+  	var newPairMedia=$("<td>");
+  	newPairMedia.addClass("pair-row-media");
+  	newPairMedia.text(pair.media_type);
+  	console.log(pair.media_type);  	
+  	newPairRow.append(newPairMedia);
+  	var newPairTitle=$("<td>");
+  	newPairTitle.addClass("pair-row-title");
+  	newPairTitle.text(pair.media_title);
+  	newPairRow.append(newPairTitle);  	  	
+  	var newPairDrink=$("<td>");
+  	newPairDrink.addClass("pair-row-drink");
+  	newPairDrink.attr("href",pair.drink_url);
+  	newPairDrink.text(pair.drink_name);
+  	newPairRow.append(newPairDrink);  	  	
+  	var newPairMeal=$("<td>");
+  	newPairMeal.addClass("pair-row-meal");
+  	newPairMeal.attr("href",pair.recipe_url);  	
+  	newPairMeal.text(pair.food_name);
+  	newPairRow.append(newPairMeal);
+
+  	return newPairRow;
+
+  	//pushing the new row into the list should be handled by initializeRows func
+
+  }
+
 
 
   // This function displays a messgae when there are no posts
