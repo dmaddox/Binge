@@ -26,6 +26,11 @@ th, td {
     background-color:rgba(54, 52, 52, 0.8);
     color: #E4801D;
 }
+
+#pair-table a {
+    display:block;
+    text-decoration:none;
+}
  
  .button {
      float: right;

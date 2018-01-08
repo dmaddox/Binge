@@ -67,19 +67,44 @@ var pairs;
   	newPairMedia.text(pair.media_type);
   	console.log(pair.media_type);  	
   	newPairRow.append(newPairMedia);
+
   	var newPairTitle=$("<td>");
   	newPairTitle.addClass("pair-row-title");
-  	newPairTitle.text(pair.media_title);
+  	var newPairTitleLink=$("<a>");
+  	if (pair.media_type=="book"){
+  	newPairTitleLink.attr("href","https://www.amazon.com/s/?url=search-alias%3Dstripbooks&field-keywords="+pair.media_title);
+  	} else {
+  	newPairTitleLink.attr("href","https://www.justwatch.com/us/search?q="+pair.media_title);
+  	}
+  	newPairTitleLink.attr("target","_blank");
+  	newPairTitleLink.text(pair.media_title);
+  	newPairTitle.append(newPairTitleLink);
   	newPairRow.append(newPairTitle);  	  	
+  	
   	var newPairDrink=$("<td>");
   	newPairDrink.addClass("pair-row-drink");
-  	newPairDrink.attr("href",pair.drink_url);
-  	newPairDrink.text(pair.drink_name);
+  	var newPairDrinkLink=$("<a>");
+  	if (pair.drink_url){
+	  	newPairDrinkLink.attr("href",pair.drink_url);
+	} else {
+		newPairDrinkLink.attr("href","https://www.google.com/search?q="+pair.drink_name+" recipe");
+	}
+  	newPairDrinkLink.attr("target","_blank");
+  	newPairDrinkLink.text(pair.drink_name);
+  	newPairDrink.append(newPairDrinkLink);
   	newPairRow.append(newPairDrink);  	  	
+  	
   	var newPairMeal=$("<td>");
   	newPairMeal.addClass("pair-row-meal");
-  	newPairMeal.attr("href",pair.recipe_url);  	
-  	newPairMeal.text(pair.food_name);
+  	var newPairMealLink=$("<a>");
+  	if (pair.recipe_url){
+  		newPairMealLink.attr("href",pair.recipe_url);
+  	} else {
+  		newPairMealLink.attr("href","https://www.google.com/search?q="+pair.food_name+" recipe");
+  	}
+  	newPairMealLink.attr("target","_blank");	
+  	newPairMealLink.text(pair.food_name);
+  	newPairMeal.append(newPairMealLink);
   	newPairRow.append(newPairMeal);
 
   	return newPairRow;
@@ -100,7 +125,7 @@ var pairs;
     pairsContainer.empty();
     var messageh2 = $("<h2>");
     messageh2.css({ "text-align": "center", "margin-top": "50px" });
-    messageh2.html("No posts yet" + partial + ", navigate <a href='/cms" + query +
+    messageh2.html("No posts yet" + partial + ", navigate <a href='/add" + query +
     "'>here</a> in order to get started.");
     pairsContainer.append(messageh2);
   }
