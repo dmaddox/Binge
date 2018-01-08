@@ -58,4 +58,6 @@ body {
      cursor: pointer;
  }
 
- 
+ #validation-message {
+    color:red;
+ }
