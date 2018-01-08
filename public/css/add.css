@@ -29,7 +29,20 @@ body {
      float:left;
  }
  
+ .panel-heading a:visited {
+     color: #E4801D;
+ }
 
+ .panel-heading a:active {
+    color: #E4801D;
+}
+.panel-heading a:hover {
+    color: #E4801D;
+}
+
+ .panel-heading a:link {
+    color: #E4801D;
+}
 
  .submit {
     display:block;
@@ -55,6 +68,9 @@ body {
      cursor: pointer;
  }
 
+
  #validation-message {
     color:red;
+    background-color:rgba(54, 52, 52, 0.8);
+    border-radius:25px;
  }
