@@ -15,12 +15,11 @@ body {
      float:left;
  }
  
-
-
  table, th, td { 
+    margin:auto;
+    padding:20px;
     border: 4px solid ;
     color: #E4801D;
-    border-collapse: collapse;
 }
 th, td {
     padding: 15px;
