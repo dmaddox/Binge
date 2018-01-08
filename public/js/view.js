@@ -48,9 +48,7 @@ var pairs;
     for (var i = 0; i < pairs.length; i++) {
       pairsToAdd.push(createNewRow(pairs[i]));
     }
-    // var pairData=JSON.stringify(pairs);
-    // console.log(pairData);
-         // pairsContainer.append("pizza");
+
      pairsContainer.append(pairsToAdd);
      console.log(pairsToAdd);
 
