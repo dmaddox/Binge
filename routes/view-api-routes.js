@@ -23,7 +23,7 @@ module.exports = function(app) {
   });
 
     // Get route to show only by give media type
-  app.get("/api/view/type/:type", function(req, res) {
+  app.get("/api/view/:type", function(req, res) {
     // return all entries that match the title
     db.Pairs.findAll({
       where: {

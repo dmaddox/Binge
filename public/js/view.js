@@ -10,12 +10,13 @@ var pairs;
 // The code below handles the case where we want to get blog posts for a specific author
   // Looks for a query param in the url for author_id
   var url = window.location.search;
-  var authorId;
-  if (url.indexOf("?author_id=") !== -1) {
-    authorId = url.split("=")[1];
-    getPairs(authorId);
+  var media_type;
+  if (url.indexOf("?media_type=") !== -1) {
+    media_type = url.split("=")[1];
+    console.log("media type is "+media_type);
+    getPairs(media_type);
   }
-  // If there's no authorId we just get all posts as usual
+  // If there's no media_type we just get all posts as usual
   else {
     getPairs();
   }
@@ -23,16 +24,17 @@ var pairs;
 
 
   // This function grabs posts from the database and updates the view
-  function getPairs(author) {
-    authorId = author || "";
-    if (authorId) {
-      authorId = "/?author_id=" + authorId;
+  function getPairs(type) {
+    media_type = type || "";
+    if (media_type) {
+      // media_type = "/?media_type=" + media_type;
+      media_type;
     }
-    $.get("/api/view" + authorId, function(data) {
-      console.log("Posts", data);
+    $.get("/api/view/" + media_type, function(data) {
+      console.log("Pairs", data);
       pairs = data;
       if (!pairs || !pairs.length) {
-        displayEmpty(author);
+        displayEmpty(type);
       }
       else {
         initializeRows();
@@ -64,8 +66,11 @@ var pairs;
   	newPairRow.addClass("pair-row");
   	var newPairMedia=$("<td>");
   	newPairMedia.addClass("pair-row-media");
-  	newPairMedia.text(pair.media_type);
-  	console.log(pair.media_type);  	
+  	var newPairMediaLink=$("<a>");
+  	newPairMediaLink.attr("href","?media_type="+pair.media_type);
+  	newPairMediaLink.text(pair.media_type);
+  	console.log(pair.media_type);
+  	newPairMedia.append(newPairMediaLink);  	
   	newPairRow.append(newPairMedia);
 
   	var newPairTitle=$("<td>");
