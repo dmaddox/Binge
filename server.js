@@ -52,7 +52,7 @@ var db = require("./models");
 // =============================================================
 // add { force: true } in ".sync()" function if writing db schema for first time.
 
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
