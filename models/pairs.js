@@ -18,11 +18,12 @@ module.exports = function(sequelize, DataTypes) {
       len: [1]
     },
     food_name: DataTypes.STRING,
-    recipe_url: DataTypes.STRING,
-    playlist_url: DataTypes.STRING,
+    recipe_url: DataTypes.STRING(512),
+    playlist_url: DataTypes.STRING(512),
     drink_name: DataTypes.STRING,
-    drink_url: DataTypes.STRING,
+    drink_url: DataTypes.STRING(512),
     user_id: DataTypes.INTEGER,
+    pairing_score: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   })
