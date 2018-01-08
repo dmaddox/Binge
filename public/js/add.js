@@ -36,15 +36,19 @@ $(document).ready(function() {
     console.log(mediaTypeInput);
     console.log(mediaTypeSelect);
     // identify & store the submitter's name, the media title, the paired meal & bevereage
-    nameInput = $("#" + mediaTypeSelect + "_name").val().trim();
-    titleInput = $("#" + mediaTypeSelect + "_title").val().trim();
-    mealInput = $("#" + mediaTypeSelect + "_meal").val().trim();
-    drinkInput = $("#" + mediaTypeSelect + "_drink").val().trim();
-
+    nameInput = $("#" + mediaTypeSelect + "-your_name").val().trim();
+    drinkInput = $("#" + mediaTypeSelect + "-drink_name").val().trim();
+    mealInput = $("#" + mediaTypeSelect + "-meal_name").val().trim();
+    titleInput = $("#" + mediaTypeSelect + "-title").val().trim();
+    drinkUrlInput = $("#" + mediaTypeSelect + "-drink_url").val().trim();
+    mealUrlInput = $("#" + mediaTypeSelect + "-meal_url").val().trim();
+    
     console.log(nameInput);
     console.log(titleInput);
     console.log(mealInput);
     console.log(drinkInput);
+    console.log(drinkUrlInput);
+    console.log(mealUrlInput);
 
     // Wont submit the post if we are missing a nameInput or titleInput
     if (!nameInput || !titleInput) {
@@ -58,7 +62,9 @@ $(document).ready(function() {
       media_title: titleInput,
       food_name: mealInput,
       drink_name: drinkInput,
-      user_id: nameInput
+      recipe_url: mealUrlInput,
+      drink_url: drinkUrlInput,
+      user_id: nameInput,
     };
 
     // Run submitPair to create a whole new pairing
