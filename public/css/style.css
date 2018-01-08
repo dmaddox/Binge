@@ -1,26 +1,24 @@
 body {
-   background-size: 100%;
    background-color:black;
    border-radius: 25px;
-   border-style: double;
-   border-color:#E4801D;
-   border-width: 10px;
-   padding-bottom:10px;
    text-align: center;
-   max-width: 500px;
+   font-family: 'Neucha', cursive;
+ 
 }
 
-.container {
-    
-    }
+p {
+    color:	#E4801D;
+    font-size: 250%;
+    font-family: 'Neucha', cursive;
+}
     
 img {
-	padding-top:100px;
+	padding-top:80px;
 }
 
 .glyphicon {
     color:	#E4801D;
-    font-size: 250%;
+    font-size: 100%;
 }
 
 .button {
