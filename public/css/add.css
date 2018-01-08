@@ -1,13 +1,9 @@
 body {
     background-color:black;
+    
  }
 
- #main-section {
-    padding:20px;
-    position: relative;
-    margin:auto;
-    text-align: center;
- }
+
  
  .container {
      padding:20px;
