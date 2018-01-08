@@ -78,6 +78,7 @@ body {
 
  .nothing-found {
      border-radius:25px;
+     padding:15px;
      background-color:rgba(54, 52, 52, 0.8);
 
  }
