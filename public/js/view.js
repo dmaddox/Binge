@@ -45,7 +45,8 @@ var pairs;
 
   // InitializeRows handles appending all of our constructed post HTML inside pairsContainer
   function initializeRows() {
-    // pairsContainer.empty();
+    pairsContainer.empty();
+    pairsContainer.append("<tr><th>Media Type</th><th>Title</th> <th>Drink</th><th>Meal</th><th>Voting</th><th>Rating</th></tr>");
     var pairsToAdd = [];
     for (var i = 0; i < pairs.length; i++) {
       pairsToAdd.push(createNewRow(pairs[i]));
@@ -123,6 +124,7 @@ var pairs;
   	 var newPairArrowsUpSpan=$("<span>");
   	 newPairArrowsUpSpan.addClass("glyphicon glyphicon-arrow-up");
   	 newPairArrowsUpSpan.attr("pair-id",pair.pair_id);
+  	 newPairArrowsUpSpan.attr("pair-score",pair.pairing_score);
 
   	newPairArrowsUpLink.append(newPairArrowsUpSpan);
 
@@ -132,6 +134,7 @@ var pairs;
   	 var newPairArrowsDownSpan=$("<span>");
   	 newPairArrowsDownSpan.addClass("glyphicon glyphicon-arrow-down");
   	 newPairArrowsDownSpan.attr("pair-id",pair.pair_id);
+  	 newPairArrowsDownSpan.attr("pair-score",pair.pairing_score);
 
   	newPairArrowsDownLink.append(newPairArrowsDownSpan);
 
@@ -155,6 +158,40 @@ var pairs;
   }
 
 
+$(document).on("click", "span.glyphicon-arrow-up", handleUpVote);
+
+$(document).on("click", "span.glyphicon-arrow-down", handleDownVote);
+
+function handleUpVote(){
+	var score=$(this).attr("pair-score");
+	console.log("pair score is "+score);
+	var newScore=parseInt(score)+1;
+	console.log("new score:"+newScore);
+	var id=$(this).attr("pair-id");
+	console.log("pair id is "+id);
+	vote(id, newScore);
+}
+
+function handleDownVote(){
+	var score=$(this).attr("pair-score");
+	console.log("pair score is "+score);
+	var newScore=parseInt(score)-1;
+	console.log("new score:"+newScore);
+	var id=$(this).attr("pair-id");
+	console.log("pair id is "+id);
+	vote(id, newScore);
+}
+
+function vote(id, newScore){
+	var data = {pairing_score:newScore,pair_id:id}
+	$.post("/api/view",data)
+    .done(function() {
+    	console.log("updated");
+    	refreshList();
+    	// location.reload();
+      // getPosts(postCategorySelect.val());
+    });
+}
 
   // This function displays a messgae when there are no posts
   function displayEmpty(id) {
@@ -170,6 +207,18 @@ var pairs;
     messageh2.html("No posts yet" + partial + ", navigate <a href='/add" + query +
     "'>here</a> in order to get started.");
     pairsContainer.append(messageh2);
+  }
+
+  function refreshList(){
+  	  if (url.indexOf("?media_type=") !== -1) {
+    media_type = url.split("=")[1];
+    console.log("media type is "+media_type);
+    getPairs(media_type);
+  }
+  // If there's no media_type we just get all posts as usual
+  else {
+    getPairs();
+  }
   }
 
 })
