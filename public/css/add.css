@@ -15,6 +15,11 @@ body {
     color: #E4801D;
 }
 
+.panel > .panel-body {
+    background-image: none;
+    background-color:rgba(54, 52, 52, 0.8);
+    color: #E4801D;
+}
 
  
  .container {
