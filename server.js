@@ -7,6 +7,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
+// Sets up Passport
+// =============================================================
+var passport   = require('passport');
+var flash    = require('connect-flash');
+var session    = require('express-session');
+
 //Sets up Handlebars
 // =============================================================
 var exphbs = require('express-handlebars');
@@ -30,7 +36,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Static directory
 app.use(express.static("public"));
 
-
+// For Passport---------------------------------------------/
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 //Handlebars config ---------------------------------------/
 app.engine('handlebars', exphbs({
@@ -38,15 +48,17 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-
 // Routes
 // =============================================================
 // TO BE UPDATED
+
 require("./routes/html-routes.js")(app);
 require("./routes/view-api-routes.js")(app);
 require("./routes/post-api-routes.js")(app);
+// load passport strategies
+require('./config/passport.js')(passport);
+require("./routes/user-controller-routes.js")(app,passport);
 
-var db = require("./models");
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

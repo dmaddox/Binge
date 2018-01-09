@@ -32,4 +32,15 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/view.html"));
   });
 
+  // view route (showing existing pairs) loads view.html
+  app.get("/signup", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
+
+  // view route for signin
+  app.get("/signin", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/user-login.html"));
+  });
+
 };

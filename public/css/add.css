@@ -3,6 +3,10 @@ body {
     background-color:black; 
  }
 
+/*form .row {
+    padding-left: 15px;
+}*/
+
  .panel-custom {
     background-image: none;
     background-color:rgba(54, 52, 52, 0.8);
@@ -68,6 +72,10 @@ body {
      cursor: pointer;
  }
 
+ label {
+    cursor: default!important;
+ }
+
 
  #validation-message {
      margin:auto;
@@ -75,4 +83,12 @@ body {
     background-color:rgba(54, 52, 52, 0.8);
     border-radius:25px;
     max-width:325px;
+ }
+
+
+ /* Portrait tablet to landscape and desktop */
+@media (min-width: 768px)  { 
+    .panel-body .row {
+        padding-left: 15px;
+    }
  }
