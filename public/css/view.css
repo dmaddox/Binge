@@ -1,7 +1,6 @@
 body {
     background-repeat: no-repeat;
     background-color:black;'
-    
  }
 
 
@@ -132,4 +131,14 @@ body {
     content: " ";
     display: block;
     background: #E4801D;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 18px;
+    color:#E4801D;
+      text-align: center;
+      font-family: 'Neucha', cursive;
   }

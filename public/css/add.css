@@ -76,3 +76,13 @@ body {
     border-radius:25px;
     max-width:325px;
  }
+
+ footer {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 18px;
+    color:#E4801D;
+      text-align: center;
+      font-family: 'Neucha', cursive;
+  }

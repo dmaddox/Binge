@@ -53,21 +53,21 @@ img {
 }
 
 .fade-in.one {
--webkit-animation-delay: 0.7s;
--moz-animation-delay: 0.7s;
-animation-delay: 0.7s;
+-webkit-animation-delay: 0.3s;
+-moz-animation-delay: 0.3s;
+animation-delay: 0.3s;
 /*float: left;*/
 }
 
 .fade-in.two {
--webkit-animation-delay: 1.2s;
--moz-animation-delay:1.2s;
-animation-delay: 1.2s;
+-webkit-animation-delay: 0.7s;
+-moz-animation-delay:0.7s;
+animation-delay: 0.7s;
 }
 
 .fade-in.three {
--webkit-animation-delay: 1.6s;
--moz-animation-delay: 1.6s;
-animation-delay: 1.6s;
+-webkit-animation-delay: 1.1s;
+-moz-animation-delay: 1.1s;
+animation-delay: 1.1s;
 /*margin: auto;*/
 }
