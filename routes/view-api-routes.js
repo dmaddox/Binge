@@ -34,4 +34,18 @@ module.exports = function(app) {
     });
   });
 
+    // PUT route for up/down voting 
+  app.put("/api/view", function(req, res) {
+    console.log(req.body);
+    db.Pairs.update(
+      {pairing_score: req.body.pairing_score},
+      {
+        where: {
+          pair_id: req.body.pair_id
+        }
+      }).then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
 };
