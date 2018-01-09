@@ -24,7 +24,11 @@ module.exports = function(sequelize, DataTypes) {
     drink_url: DataTypes.STRING(512),
     user_name: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
-    pairing_score: DataTypes.INTEGER,
+    pairing_score: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+      },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   })
