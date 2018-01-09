@@ -112,6 +112,42 @@ var pairs;
   	newPairMeal.append(newPairMealLink);
   	newPairRow.append(newPairMeal);
 
+// arrows start
+  	var newPairArrows=$("<td>");
+  	newPairArrows.addClass("pair-row-arrows");
+
+  	
+  	var newPairArrowsUpLink=$("<a>");
+  	newPairArrowsUpLink.attr("href","#");
+
+  	 var newPairArrowsUpSpan=$("<span>");
+  	 newPairArrowsUpSpan.addClass("glyphicon glyphicon-arrow-up");
+  	 newPairArrowsUpSpan.attr("pair-id",pair.pair_id);
+
+  	newPairArrowsUpLink.append(newPairArrowsUpSpan);
+
+  	var newPairArrowsDownLink=$("<a>");
+  	newPairArrowsDownLink.attr("href","#");
+
+  	 var newPairArrowsDownSpan=$("<span>");
+  	 newPairArrowsDownSpan.addClass("glyphicon glyphicon-arrow-down");
+  	 newPairArrowsDownSpan.attr("pair-id",pair.pair_id);
+
+  	newPairArrowsDownLink.append(newPairArrowsDownSpan);
+
+
+  	newPairArrows.append(newPairArrowsUpLink);
+   	newPairArrows.append(newPairArrowsDownLink);
+  	newPairRow.append(newPairArrows);
+// arrows end
+
+
+	var newPairScore=$("<td>");
+  	newPairScore.addClass("pair-row-media");
+  	newPairScore.text(pair.pairing_score);
+  	console.log(pair.pairing_score); 	
+  	newPairRow.append(newPairScore);
+
   	return newPairRow;
 
   	//pushing the new row into the list should be handled by initializeRows func
