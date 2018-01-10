@@ -93,16 +93,15 @@ body {
     text-align: center;
     font-size: 18px;
  }
- 
  .radio-item {
     display: inline-block;
+    position: relative;
     padding: 0 6px;
     margin: 10px 0 0;
   }
   
   .radio-item input[type='radio'] {
     display: none;
-
   }
   
   .radio-item label {
@@ -119,22 +118,21 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 11px;
-    border: 2px solid grey;
-    background-color: white;
+    border: 2px solid #E4801D;
+    background-color: transparent;
   }
   
   .radio-item input[type=radio]:checked + label:after {
     border-radius: 11px;
     width: 12px;
     height: 12px;
-    position: relative;
+    position: absolute;
     top: 9px;
     left: 10px;
     content: " ";
     display: block;
     background: #E4801D;
   }
-
   footer {
     position: absolute;
     bottom: 8px;
