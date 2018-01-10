@@ -17,21 +17,27 @@ function handleSignup(event) {
   // Identify & store user's data 
   // ==================================================
   email = $("#email").val().trim();
-  username = $("#username").val().trim();
   pw = $("#key").val().trim();
   verify_pw = $("#verify-key").val().trim();
   
   console.log(email);
-  console.log(username);
   console.log(pw);
   console.log(verify_pw);
 
 
   // Wont submit the post if we are missing any
-  if (!email || !username || !pw || !verify_pw) {
+  if (!email || !pw || !verify_pw) {
     console.log("Please complete all fields.");
     // call validateMessage to display the proper error message to the user
     $("#validation-message").append("Please complete all fields.");
+    return;
+  }
+
+  // if pw's dont' match
+  if (pw !== verify_pw) {
+    console.log("Passwords must match.");
+    // call validateMessage to display the proper error message to the user
+    $("#validation-message").append("Your passwords don't match.");
     return;
   }
 
@@ -52,9 +58,10 @@ function handleSignup(event) {
     console.log("submitUser function running");
     console.log(post);
     $.post('/signup', post, function(data, status) {
-      // console.log(data);
+      console.log(data);
       console.log(status);
-      if (status === "success") {window.location.href = "/add";};
+      // res.redirect("/add");
+      if (status === "success") {window.location.href = "/add"};
   });}
 
 

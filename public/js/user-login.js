@@ -47,8 +47,9 @@ function handleSignin(event) {
   function checkUserPw(post) {
     console.log("checkUserPw function running");
     $.post('/signin', post, function(data, status) {
-      // console.log(data);
+      console.log(data);
       console.log(status);
+      // res.redirect("/add");
       if (status === "success") {window.location.href = "/add";};
   });}
 
