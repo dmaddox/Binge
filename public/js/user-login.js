@@ -46,9 +46,11 @@ function handleSignin(event) {
   // Submits a new pairing and brings user to view upon completion
   function checkUserPw(post) {
     console.log("checkUserPw function running");
-    $.post('/signin', post
-    );
-  }
+    $.post('/signin', post, function(data, status) {
+      // console.log(data);
+      console.log(status);
+      // if (status === "success") {window.location.href = "/add";};
+  });}
 
 
 

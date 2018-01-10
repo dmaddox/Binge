@@ -1,111 +1,95 @@
-// load all the things we need
-var LocalStrategy = require('passport-local').Strategy;
-
-var bcrypt   = require('bcrypt-nodejs');
-
-
-// Requiring our models
+// Dependencies
+// =============================================================
 var db = require("../models");
+var bCrypt = require('bcrypt-nodejs');
 
 // prepare for export
-module.exports = function(passport) {
+module.exports = function(passport, user) {
+var User = db.Users;
+	// load all the things we need
+	var LocalStrategy = require('passport-local').Strategy;
 
-// =========================================================================
-// passport is logged in? ==================================================
-// =========================================================================
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-    res.redirect('/signin');
-  };
+	 // LOCAL SIGNUP ============================================================
+	 // =========================================================================
+	 // we are using named strategies since we have one for login and one for signup
+	 // by default, if there was no name, it would just be called 'local'
+
+	 passport.use('local-signup', new LocalStrategy({
+	     // by default, local strategy uses username and password, we will override with email
+	     usernameField : 'email',
+	     passwordField : 'password',
+	     passReqToCallback : true // allows us to pass back the entire request to the callback
+	 },
+	 function(req, email, password, done) {
+	     // asynchronous
+	     // User.findOne wont fire unless data is sent back
+	     // process.nextTick(function() {
+	     	var generateHash = function(password) {
+	     					return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+	     				};
+			 // find a user whose email is the same as the forms email
+			 // we are checking to see if the user trying to login already exists
+			User.findOne({ where: {
+			    email: email
+			  } }).then(function(user) {
+
+			     // check to see if theres already a user with that email
+			     if (user) {
+			         	console.log("That email is already taken");
+			         return done(null, false, {
+							message: 'That email is already taken'
+			     			}); 
+			     } else {
+			     	var userPassword = generateHash(password);
+			     	var data = {
+						email: email, //come back to match ana file
+						password: userPassword, //come back to match ana file
+					};
+					//create a new user
+					// console.log("req.body is: " + req.body);
+					db.Users.create(data).then(function(newUser, created) {
+						//if not a new user, don't make a new user
+						if (!newUser) {
+							return done(null, false);
+						}
+						if (newUser) {
+							console.log("Success! New user added to dB: " + newUser.email);
+							return done(null, newUser);
+						}
+					});
+			     };
+
+			 });    
+
+	     // });
+
+	 })); //End Local Signup
+
+
+	 // SERIALIZE ===============================================================
+	 // =========================================================================
+	 passport.serializeUser(function(user, done) {
+	 	console.log("serializing");
+	 	console.log("done: " + done);
+	 	done(null, user.id);
+	 	console.log("done serializing user.id: " + user.id);
+	 });
+	 // deserialize user
+	 passport.deserializeUser(function(id, done) {
+	 	console.log("DEserializing id: " + id);
+	 	console.log("done: " + done);
+	 	User.findById(id).then(function(user) {
+	 		if (user) {
+	 			console.log(user.get());
+	 			debugger;
+	 			done(null, user);
+	 		} else {
+	 			done(user.errors, null);
+	 		}
+	 	});
+	 });
+
  
- // =========================================================================
- // passport session setup ==================================================
- // =========================================================================
- // required for persistent login sessions
- // passport needs ability to serialize and unserialize users out of session
-
- // used to serialize the user for the session
- passport.serializeUser(function(user, done) {
-     done(null, user.id);
- });
-
- // used to deserialize the user
- passport.deserializeUser(function(id, done) {
-     db.Users.findById(id, function(err, user) {
-         done(err, user);
-     });
- });
-
- // =========================================================================
- // LOCAL SIGNUP ============================================================
- // =========================================================================
- // we are using named strategies since we have one for login and one for signup
- // by default, if there was no name, it would just be called 'local'
-
- passport.use('local-signup', new LocalStrategy({
-     // by default, local strategy uses username and password, we will override with email
-     usernameField : 'email',
-     passwordField : 'password',
-     passReqToCallback : true // allows us to pass back the entire request to the callback
- },
- function(req, email, password, done) {
-     // asynchronous
-     // User.findOne wont fire unless data is sent back
-     process.nextTick(function() {
-     // find a user whose email is the same as the forms email
-     // we are checking to see if the user trying to login already exists
-    db.Users.findOne({ where: {
-        email: email
-      } }).then(function(err, user) {
-
-         // if there are any errors, return the error
-         if (err) 
-             return done(err);
-
-         // check to see if theres already a user with that email
-         if (user) {
-             return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-         } else {
-         	console.log("creating new user instance");
-             // if there is no user with that email
-             // create the user
-             var newUser            = new db.Users();
-
-             // set the user's local credentials
-             newUser.email    = email;
-             newUser.password = newUser.generateHash(password);
-
-             // save the user instance
-             newUser.save().then(function(res){
-			    console.log("saving");
-			    // console.log(res);
-			    return done(res);
-			  })
-			  .catch(function(error){
-			    throw err;
-			  });
-
-           //   .then(function(err, res) {
-           //   	console.log("newUser is: " + newUser);
-           //   	console.log("res is: " + res);
-           //       if (err) {
-           //           throw err;
-           //       } else {
-           //       console.log("saving");
-           //       return done(null, res);
-         		// };
-           //   });
-         };
-
-     });    
-
-     });
-
- })); //End Local Signup
-
- // =========================================================================
      // LOCAL LOGIN =============================================================
      // =========================================================================
      // we are using named strategies since we have one for login and one for signup
@@ -118,39 +102,47 @@ function isLoggedIn(req, res, next) {
          passReqToCallback : true // allows us to pass back the entire request to the callback
      },
      function(req, email, password, done) { // callback with email and password from our form
+     	var User = db.Users;
+     	console.log("req : " + req.body);
+     	console.log("email : " + email);
+     	console.log("password : " + password);
+     	console.log("done : " + done);
 
+     	//encrypt password
+     	var isValidPassword = function(userpass, password) {
+ 			console.log("isvalidPassword() is running");
+			return bCrypt.compareSync(password, userpass);
+		};
          // find a user whose email is the same as the forms email
          // we are checking to see if the user trying to login already exists
-         db.Users.findOne({ where: {
+         User.findOne({ where: {
         	email: email
-      	 	} }).then(function(user, err) {
-      	 		console.log(user);
-             // if there are any errors, return the error before anything else
-             if (err) {
-             	console.log("error");
-                 return done(err);
-             }
+      	 	} }).then(function(user) {
 
-             // if no user is found, return the message
-             if (!user){
-             	console.log("no user found");
-                 return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-             }
-
-             // if the user is found but the password is wrong
-             if (!user.validPassword(user.password, password)) {
-             	console.log("wrong password");
-                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
-             }
-
-             // all is well, return successful user
-             console.log("validated");
-             return done(null, user);
-         });
-
-     })); 
-
- // };
+      	 		if (!user) {
+      	 			console.log("No user by that email.");
+					return done(null, false, {
+						message: 'Email does not exist'
+					});
+				}
+				//if password isn't right, alert user
+				if (!isValidPassword(user.password, password)) {
+					console.log("Incorrect password.");
+					return done(null, false, {
+						message: 'Incorrect password.'
+					});
+				}
+				var userinfo = user.get();
+				console.log("Logging in..." + userinfo.email);
+				return done(null, userinfo);
+				//if an error is thrown, alert user
+				}).catch(function(err) {
+					console.log("Error:", err);
+					return done(null, false, {
+						message: 'Something went wrong with your Signin'
+					});
+				});
+     }));  // End local login
 
 } // end module export
 
