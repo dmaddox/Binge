@@ -34,17 +34,11 @@ app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}))
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-// Requiring our models for syncing
-var db = require("./models");
-
 // Static directory
 app.use(express.static("public"));
 
-//Handlebars config ---------------------------------------/
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main'
-}));
-app.set('view engine', 'handlebars');
+// Requiring our models for syncing
+var db = require("./models");
 
 // Routes
 // =============================================================

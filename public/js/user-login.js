@@ -49,7 +49,7 @@ function handleSignin(event) {
     $.post('/signin', post, function(data, status) {
       // console.log(data);
       console.log(status);
-      // if (status === "success") {window.location.href = "/add";};
+      if (status === "success") {window.location.href = "/add";};
   });}
 
 

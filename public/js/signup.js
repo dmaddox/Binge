@@ -51,12 +51,11 @@ function handleSignup(event) {
   function submitUser(post) {
     console.log("submitUser function running");
     console.log(post);
-    $.post('/signup', post,
-      function() {
-        "post submitUser is complete"
-      }
-    );
-  }
+    $.post('/signup', post, function(data, status) {
+      // console.log(data);
+      console.log(status);
+      if (status === "success") {window.location.href = "/add";};
+  });}
 
 
 
