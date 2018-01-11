@@ -28,10 +28,11 @@ body {
     margin:auto;
     padding:20px;
     color: #E4801D;
+    background-color: rgba(90, 87, 87, 0.8);
 
  }
  
- .zui-table-rounded {
+ .pair-table-rounded {
     border: none;
 }
 #pair-table  th {
@@ -47,14 +48,16 @@ body {
 }
 #pair-table tbody td {
     border: none;
-    border-top: solid 1px rgba(54, 52, 52, 0.8);;
-    background-color: rgba(90, 87, 87, 0.8);;
+    border-top: solid 1px rgba(54, 52, 52, 0.8);
+    background-color: rgba(90, 87, 87, 0.8);
 }
 #pair-table tbody tr:last-child td:first-child {
     border-radius: 0 0 0 10px;
+    background-color: rgba(90, 87, 87, 0.8);
 }
 #pair-table tbody tr:last-child td:last-child {
     border-radius: 0 0 10px 0;
+    background-color: rgba(90, 87, 87, 0.8);
 }
 
 #pair-table a {
@@ -82,3 +85,60 @@ body {
      background-color:rgba(54, 52, 52, 0.8);
 
  }
+
+ form {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+ }
+ .radio-item {
+    display: inline-block;
+    position: relative;
+    padding: 0 6px;
+    margin: 10px 0 0;
+  }
+  
+  .radio-item input[type='radio'] {
+    display: none;
+  }
+  
+  .radio-item label {
+    color: white;
+    font-weight: normal;
+  }
+  
+  .radio-item label:before {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    margin: 0 5px 0 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 11px;
+    border: 2px solid #E4801D;
+    background-color: transparent;
+  }
+  
+  .radio-item input[type=radio]:checked + label:after {
+    border-radius: 11px;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    content: " ";
+    display: block;
+    background: #E4801D;
+  }
+  footer {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 18px;
+    color:#E4801D;
+      text-align: center;
+      font-family: 'Neucha', cursive;
+  }

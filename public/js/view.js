@@ -10,12 +10,13 @@ var pairs;
 // The code below handles the case where we want to get blog posts for a specific author
   // Looks for a query param in the url for author_id
   var url = window.location.search;
-  var authorId;
-  if (url.indexOf("?author_id=") !== -1) {
-    authorId = url.split("=")[1];
-    getPairs(authorId);
+  var media_type;
+  if (url.indexOf("?media_type=") !== -1) {
+    media_type = url.split("=")[1];
+    console.log("media type is "+media_type);
+    getPairs(media_type);
   }
-  // If there's no authorId we just get all posts as usual
+  // If there's no media_type we just get all posts as usual
   else {
     getPairs();
   }
@@ -23,16 +24,17 @@ var pairs;
 
 
   // This function grabs posts from the database and updates the view
-  function getPairs(author) {
-    authorId = author || "";
-    if (authorId) {
-      authorId = "/?author_id=" + authorId;
+  function getPairs(type) {
+    media_type = type || "";
+    if (media_type) {
+      // media_type = "/?media_type=" + media_type;
+      media_type;
     }
-    $.get("/api/view" + authorId, function(data) {
-      console.log("Posts", data);
+    $.get("/api/view/" + media_type, function(data) {
+      console.log("Pairs", data);
       pairs = data;
       if (!pairs || !pairs.length) {
-        displayEmpty(author);
+        displayEmpty(type);
       }
       else {
         initializeRows();
@@ -43,7 +45,8 @@ var pairs;
 
   // InitializeRows handles appending all of our constructed post HTML inside pairsContainer
   function initializeRows() {
-    // pairsContainer.empty();
+    pairsContainer.empty();
+    pairsContainer.append("<tr><th>Media Type</th><th>Title</th> <th>Drink</th><th>Meal</th><th>Voting</th><th>Rating</th></tr>");
     var pairsToAdd = [];
     for (var i = 0; i < pairs.length; i++) {
       pairsToAdd.push(createNewRow(pairs[i]));
@@ -64,14 +67,17 @@ var pairs;
   	newPairRow.addClass("pair-row");
   	var newPairMedia=$("<td>");
   	newPairMedia.addClass("pair-row-media");
-  	newPairMedia.text(pair.media_type);
-  	console.log(pair.media_type);  	
+  	var newPairMediaLink=$("<a>");
+  	newPairMediaLink.attr("href","?media_type="+pair.media_type);
+  	newPairMediaLink.text(pair.media_type);
+  	console.log(pair.media_type);
+  	newPairMedia.append(newPairMediaLink);  	
   	newPairRow.append(newPairMedia);
 
   	var newPairTitle=$("<td>");
   	newPairTitle.addClass("pair-row-title");
   	var newPairTitleLink=$("<a>");
-  	if (pair.media_type=="book"){
+  	if (pair.media_type=="book"||pair.media_type=="Book"){
   	newPairTitleLink.attr("href","https://www.amazon.com/s/?url=search-alias%3Dstripbooks&field-keywords="+pair.media_title);
   	} else {
   	newPairTitleLink.attr("href","https://www.justwatch.com/us/search?q="+pair.media_title);
@@ -107,6 +113,44 @@ var pairs;
   	newPairMeal.append(newPairMealLink);
   	newPairRow.append(newPairMeal);
 
+// arrows start
+  	var newPairArrows=$("<td>");
+  	newPairArrows.addClass("pair-row-arrows");
+
+  	
+  	var newPairArrowsUpLink=$("<a>");
+  	newPairArrowsUpLink.attr("href","#");
+
+  	 var newPairArrowsUpSpan=$("<span>");
+  	 newPairArrowsUpSpan.addClass("glyphicon glyphicon-arrow-up");
+  	 newPairArrowsUpSpan.attr("pair-id",pair.pair_id);
+  	 newPairArrowsUpSpan.attr("pair-score",pair.pairing_score);
+
+  	newPairArrowsUpLink.append(newPairArrowsUpSpan);
+
+  	var newPairArrowsDownLink=$("<a>");
+  	newPairArrowsDownLink.attr("href","#");
+
+  	 var newPairArrowsDownSpan=$("<span>");
+  	 newPairArrowsDownSpan.addClass("glyphicon glyphicon-arrow-down");
+  	 newPairArrowsDownSpan.attr("pair-id",pair.pair_id);
+  	 newPairArrowsDownSpan.attr("pair-score",pair.pairing_score);
+
+  	newPairArrowsDownLink.append(newPairArrowsDownSpan);
+
+
+  	newPairArrows.append(newPairArrowsUpLink);
+   	newPairArrows.append(newPairArrowsDownLink);
+  	newPairRow.append(newPairArrows);
+// arrows end
+
+
+	var newPairScore=$("<td>");
+  	newPairScore.addClass("pair-row-media");
+  	newPairScore.text(pair.pairing_score);
+  	console.log(pair.pairing_score); 	
+  	newPairRow.append(newPairScore);
+
   	return newPairRow;
 
   	//pushing the new row into the list should be handled by initializeRows func
@@ -114,6 +158,40 @@ var pairs;
   }
 
 
+$(document).on("click", "span.glyphicon-arrow-up", handleUpVote);
+
+$(document).on("click", "span.glyphicon-arrow-down", handleDownVote);
+
+function handleUpVote(){
+	var score=$(this).attr("pair-score");
+	console.log("pair score is "+score);
+	var newScore=parseInt(score)+1;
+	console.log("new score:"+newScore);
+	var id=$(this).attr("pair-id");
+	console.log("pair id is "+id);
+	vote(id, newScore);
+}
+
+function handleDownVote(){
+	var score=$(this).attr("pair-score");
+	console.log("pair score is "+score);
+	var newScore=parseInt(score)-1;
+	console.log("new score:"+newScore);
+	var id=$(this).attr("pair-id");
+	console.log("pair id is "+id);
+	vote(id, newScore);
+}
+
+function vote(id, newScore){
+	var data = {pairing_score:newScore,pair_id:id}
+	$.post("/api/view",data)
+    .done(function() {
+    	console.log("updated");
+    	refreshList();
+    	// location.reload();
+      // getPosts(postCategorySelect.val());
+    });
+}
 
   // This function displays a messgae when there are no posts
   function displayEmpty(id) {
@@ -129,6 +207,18 @@ var pairs;
     messageh2.html("No posts yet" + partial + ", navigate <a href='/add" + query +
     "'>here</a> in order to get started.");
     pairsContainer.append(messageh2);
+  }
+
+  function refreshList(){
+  	  if (url.indexOf("?media_type=") !== -1) {
+    media_type = url.split("=")[1];
+    console.log("media type is "+media_type);
+    getPairs(media_type);
+  }
+  // If there's no media_type we just get all posts as usual
+  else {
+    getPairs();
+  }
   }
 
 })

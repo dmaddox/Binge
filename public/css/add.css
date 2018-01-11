@@ -19,6 +19,11 @@ body {
     color: #E4801D;
 }
 
+.panel > .panel-body {
+    background-image: none;
+    background-color:rgba(54, 52, 52, 0.8);
+    color: #E4801D;
+}
 
  
  .container {
@@ -86,9 +91,13 @@ body {
  }
 
 
- /* Portrait tablet to landscape and desktop */
-@media (min-width: 768px)  { 
-    .panel-body .row {
-        padding-left: 15px;
-    }
- }
+ footer {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 18px;
+    color:#E4801D;
+      text-align: center;
+      font-family: 'Neucha', cursive;
+  }
+

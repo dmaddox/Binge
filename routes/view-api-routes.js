@@ -23,7 +23,7 @@ module.exports = function(app) {
   });
 
     // Get route to show only by give media type
-  app.get("/api/view/type/:type", function(req, res) {
+  app.get("/api/view/:type", function(req, res) {
     // return all entries that match the title
     db.Pairs.findAll({
       where: {
@@ -32,6 +32,20 @@ module.exports = function(app) {
     }).then(function(dbPairing) {
       res.json(dbPairing);
     });
+  });
+
+    // PUT route for up/down voting 
+  app.post("/api/view", function(req, res) {
+    console.log(req.body);
+    db.Pairs.update(
+      {pairing_score: req.body.pairing_score},
+      {
+        where: {
+          pair_id: req.body.pair_id
+        }
+      }).then(function(dbPost) {
+        res.json(dbPost);
+      });
   });
 
 };

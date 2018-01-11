@@ -14,16 +14,19 @@ var session    = require('express-session');
 
 //Sets up Handlebars
 // =============================================================
-var exphbs = require('express-handlebars');
-var methodOverride = require('method-override');
+// var exphbs = require('express-handlebars');
+// var methodOverride = require('method-override');
 
 // Sets up the Express App
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 8080;
 
+// Requiring our models for syncing
+var db = require("./models");
+
 // Sets up the Express app to handle data parsing
-app.use(methodOverride('_method'));
+// app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -37,8 +40,6 @@ app.use(passport.session()); // persistent login sessions
 // Static directory
 app.use(express.static("public"));
 
-// Requiring our models for syncing
-var db = require("./models");
 
 // Routes
 // =============================================================
@@ -49,7 +50,6 @@ require("./routes/view-api-routes.js")(app);
 require("./routes/post-api-routes.js")(app);
 // load passport strategies
 require('./config/passport.js')(passport, db.Users);
-// require("./routes/user-controller-routes.js")(app, passport);
 
 
 // Syncing our sequelize models and then starting our Express app
