@@ -11,16 +11,41 @@ p {
     font-size: 250%;
     font-family: 'Neucha', cursive;
 }
-    
-img {
-	padding-top:80px;
+
+
+.topnav img {
+    padding-left:20px;
+     padding-right:20px;
+     float:left;
+ }
+ 
+ .topnav { 
+    padding-top:10px; 
+     overflow: hidden;
+     background-color: rgba(54, 52, 52, 0.8);
+}
+
+.topnav a {
+float: left;
+border-radius:25px;
+display: block;
+color: #E4801D;
+text-align: center;
+padding: 10px;
+text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+background-color: #E4801D;
+color: black;
 }
 
 .glyphicon {
     color:	#E4801D;
     font-size: 100%;
 }
-
+/* 
 .button {
     background-color: 	#E4801D;
     border-radius: 25px;
@@ -31,7 +56,7 @@ img {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-}
+} */
 
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -71,3 +96,17 @@ animation-delay: 0.7s;
 animation-delay: 1.1s;
 /*margin: auto;*/
 }
+
+
+footer {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 18px;
+    color:#E4801D;
+    border-radius:25px;
+    background-color:rgba(54, 52, 52, 0.8);
+    padding:7px;
+      text-align: center;
+      font-family: 'Neucha', cursive;
+  }
