@@ -27,17 +27,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-
-  // Instance Method - 1st try
-  Users.prototype.generateHash = function(password) {
-    console.log("generating hash");
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-  };
-  Users.prototype.validPassword = function(userpass, password) {
-    console.log("validPassword() is running");
-      return bcrypt.compareSync(password, userpass);
-  };
-
   return Users;
 
 };

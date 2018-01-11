@@ -53,22 +53,6 @@ module.exports = function(app, passport) {
       failureRedirect : '/signup', // redirect back to the signup page if there is an error
     }));
 
-  // process the login form
-    // app.post('/signin', passport.authenticate('local-login', { failureRedirect: '/signin' }),
-    // function(req, res) {
-    //   console.log("my post response is " + res);
-    //   console.log("my post response is " + res.user);
-    //   // console.log(res);
-    // });
-
-  // // process the signup form
-  // app.post('/signup', passport.authenticate('local-signup', { failureRedirect: '/login' }), 
-  // function(req, res) {
-  //   console.log("req before: " + JSON.stringify(req.body));
-  //   // If this function gets called, authentication was successful.
-  //   // `req.user` contains the authenticated user.
-  //   res.redirect('/add');
-  // });
 
   // add route loads add.html
   app.get("/add", isLoggedIn, function(req, res) {
