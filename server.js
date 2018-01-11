@@ -45,9 +45,9 @@ app.use(express.static("public"));
 // =============================================================
 // TO BE UPDATED
 
-require("./routes/html-routes.js")(app, passport);
-require("./routes/view-api-routes.js")(app);
 require("./routes/post-api-routes.js")(app);
+require("./routes/view-api-routes.js")(app);
+require("./routes/html-routes.js")(app, passport);
 // load passport strategies
 require('./config/passport.js')(passport, db.Users);
 

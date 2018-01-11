@@ -1,5 +1,6 @@
 // Wrapping all in document.ready to wait for page to load
 $(document).ready(function() {
+  console.log("add.js is running")
 
   // Setting up variables for input
   var mediaTypeSelect = "book";
@@ -81,6 +82,7 @@ $(document).ready(function() {
 
   // Submits a new pairing and brings user to view upon completion
   function submitPair(post) {
+    console.log("submitting");
     $.post("/api/pairing", post, function() {
       window.location.href = "/view";
     });

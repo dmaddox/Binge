@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   // POST route for saving a new post
   app.post("/api/pairing", function(req, res) {
-    console.log(req.body);
+    console.log("submitting app.post('api/pairing')");
     console.log(req.body.media_type);
     // this will pull in an object from the user's input
     // for now i am testing with a specific entry
