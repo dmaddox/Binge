@@ -6,6 +6,13 @@ var pairsContainer=$("#pair-table");
 
 var pairs;
 
+// document.getElementById("Book").addEventListener("click", function(){window.location.href = "?media_type=book"});
+
+// document.getElementById("Movie").addEventListener("click", function(){window.location.href = "?media_type=movie"});
+
+// document.getElementById("Show").addEventListener("click", function(){window.location.href = "?media_type=book"});
+
+$("input[type='radio']").on("click",function(){window.location.href="?media_type="+this.id});
 
 // The code below handles the case where we want to get blog posts for a specific author
   // Looks for a query param in the url for author_id
