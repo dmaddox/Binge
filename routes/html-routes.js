@@ -41,18 +41,36 @@ module.exports = function(app, passport) {
     res.sendFile(path.join(__dirname, "../public/user-login.html"));
   });
 
-    // process the login form
-    app.post('/signin', passport.authenticate('local-login', {
-        successRedirect : '/add', // redirect to the secure profile section
-        failureRedirect : '/signin', // redirect back to the signup page if there is an error
-    }));
+  // Authentication Routes
+  // =====================
 
-    // // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-      successRedirect : '/add', // redirect to the add pairing page
-      failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    }));
+  // process the login form
+  app.post('/signin', passport.authenticate('local-login', {
+      successRedirect : '/add', // redirect to the secure profile section
+      failureRedirect : '/signin', // redirect back to the signup page if there is an error
+  }));
 
+  // // process the signup form
+  app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/add', // redirect to the add pairing page
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+  }));
+
+  app.get('/loggedin', function(req, res) {
+    console.log("/loggedin route req is: " + req.user);
+    if (req.user) {
+      console.log("TRUE-coming in hot!");
+      res.send(true);
+    } else {
+      console.log("FALSE-piddling out...");
+      res.send(false);
+    }
+  });
+
+    app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
 
   // add route loads add.html
   app.get("/add", isLoggedIn, function(req, res) {
@@ -66,6 +84,7 @@ module.exports = function(app, passport) {
     }
     res.redirect('/signup');
   }
+
   // Handle 404 - Keep this as a last route
   app.use(function(req, res, next) {
     res.status(404);
