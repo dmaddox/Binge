@@ -35,10 +35,7 @@ var User = db.Users;
 
 			     // check to see if theres already a user with that email
 			     if (user) {
-			         	console.log("That email is already taken");
-			         return done(null, false, {
-							message: 'That email is already taken'
-			     			}); 
+			         return done(null, false, {message: 'That email is already taken.'}); 
 			     } else {
 			     	var userPassword = generateHash(password);
 			     	var data = {
@@ -122,7 +119,7 @@ var User = db.Users;
       	 		if (!user) {
       	 			console.log("No user by that email.");
 					return done(null, false, {
-						message: 'Email does not exist'
+						message: 'There is no account associated with that email.'
 					});
 				}
 				//if password isn't right, alert user
@@ -139,7 +136,7 @@ var User = db.Users;
 				}).catch(function(err) {
 					console.log("Error:", err);
 					return done(null, false, {
-						message: 'Something went wrong with your Signin'
+						message: 'Something went wrong with your login.'
 					});
 				});
      }));  // End local login

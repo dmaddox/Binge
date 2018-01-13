@@ -62,3 +62,12 @@ function verifyPw() {
     $('#btn-login').prop('disabled', false);
   }
 };
+
+
+// get any error messages from passport authentication
+$.get("/signupform", function(result) {
+    console.log(result.message[0]);
+    $("#validation-message").append(result.message[0]);
+});
+
+
