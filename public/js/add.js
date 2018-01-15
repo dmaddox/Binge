@@ -1,6 +1,5 @@
 // Wrapping all in document.ready to wait for page to load
 $(document).ready(function() {
-  console.log("add.js is running")
 
   // Setting up variables for input
   var mediaTypeSelect = "book";
@@ -36,8 +35,7 @@ $(document).ready(function() {
         default:
           mediaTypeSelect = "book";
     }
-    console.log(mediaTypeInput);
-    console.log(mediaTypeSelect);
+
     // identify & store the submitter's name, the media title, the paired meal & bevereage
     nameInput = $("#" + mediaTypeSelect + "-your_name").val().trim();
     drinkInput = $("#" + mediaTypeSelect + "-drink_name").val().trim();
@@ -46,16 +44,10 @@ $(document).ready(function() {
     drinkUrlInput = $("#" + mediaTypeSelect + "-drink_url").val().trim();
     mealUrlInput = $("#" + mediaTypeSelect + "-meal_url").val().trim();
     
-    console.log(nameInput);
-    console.log(titleInput);
-    console.log(mealInput);
-    console.log(drinkInput);
-    console.log(drinkUrlInput);
-    console.log(mealUrlInput);
+
 
     // Wont submit the post if we are missing a nameInput or titleInput
     if (!nameInput || !titleInput || !mealInput && !drinkInput) {
-      console.log("User must input an id or title!");
       // call validateMessage to display the proper error message to the user
       validateMessage(nameInput, titleInput, mealInput, drinkInput, drinkUrlInput, mealUrlInput, mediaTypeSelect);
       return;
@@ -82,7 +74,6 @@ $(document).ready(function() {
 
   // Submits a new pairing and brings user to view upon completion
   function submitPair(post) {
-    console.log("submitting");
     $.post("/api/pairing", post, function() {
       window.location.href = "/view";
     });

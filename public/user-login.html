@@ -103,7 +103,6 @@
     <script>
         // get any error messages from passport authentication
         $.get("/signinform", function(result) {
-            console.log("message: " +result.message[0]);
             $("#validation-message").append(result.message[0]);
         });
     </script>

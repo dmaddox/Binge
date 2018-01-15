@@ -69,12 +69,9 @@ module.exports = function(app, passport) {
   }));
 
   app.get('/loggedin', function(req, res) {
-    console.log("/loggedin route req is: " + req.user);
     if (req.user) {
-      console.log("TRUE-coming in hot!");
       res.send(true);
     } else {
-      console.log("FALSE-piddling out...");
       res.send(false);
     }
   });

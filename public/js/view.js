@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-	console.log("view.js reporting for duty");
-
 var pairsContainer=$("#pair-table");
 
 var pairs;
@@ -20,7 +18,6 @@ $("input[type='radio']").on("click",function(){window.location.href="?media_type
   var media_type;
   if (url.indexOf("?media_type=") !== -1) {
     media_type = url.split("=")[1];
-    console.log("media type is "+media_type);
     getPairs(media_type);
   }
   // If there's no media_type we just get all posts as usual
@@ -38,7 +35,6 @@ $("input[type='radio']").on("click",function(){window.location.href="?media_type
       media_type;
     }
     $.get("/api/view/" + media_type, function(data) {
-      console.log("Pairs", data);
       pairs = data;
       if (!pairs || !pairs.length) {
         displayEmpty(type);
@@ -60,12 +56,9 @@ $("input[type='radio']").on("click",function(){window.location.href="?media_type
     }
 
      pairsContainer.append(pairsToAdd);
-     console.log(pairsToAdd);
-
   }
 
   function createNewRow(pair){
-  	console.log("createNewRow running");
   	// create the row and fields
   	// add classes to the row and fields
   	// put api data into fields
@@ -77,7 +70,6 @@ $("input[type='radio']").on("click",function(){window.location.href="?media_type
   	var newPairMediaLink=$("<a>");
   	newPairMediaLink.attr("href","?media_type="+pair.media_type);
   	newPairMediaLink.text(pair.media_type);
-  	console.log(pair.media_type);
   	newPairMedia.append(newPairMediaLink);  	
   	newPairRow.append(newPairMedia);
 
@@ -155,7 +147,6 @@ $("input[type='radio']").on("click",function(){window.location.href="?media_type
 	var newPairScore=$("<td>");
   	newPairScore.addClass("pair-row-media");
   	newPairScore.text(pair.pairing_score);
-  	console.log(pair.pairing_score); 	
   	newPairRow.append(newPairScore);
 
   	return newPairRow;
@@ -171,21 +162,15 @@ $(document).on("click", "span.glyphicon-arrow-down", handleDownVote);
 
 function handleUpVote(){
 	var score=$(this).attr("pair-score");
-	console.log("pair score is "+score);
 	var newScore=parseInt(score)+1;
-	console.log("new score:"+newScore);
 	var id=$(this).attr("pair-id");
-	console.log("pair id is "+id);
 	vote(id, newScore);
 }
 
 function handleDownVote(){
 	var score=$(this).attr("pair-score");
-	console.log("pair score is "+score);
 	var newScore=parseInt(score)-1;
-	console.log("new score:"+newScore);
 	var id=$(this).attr("pair-id");
-	console.log("pair id is "+id);
 	vote(id, newScore);
 }
 
@@ -193,7 +178,6 @@ function vote(id, newScore){
 	var data = {pairing_score:newScore,pair_id:id}
 	$.post("/api/view",data)
     .done(function() {
-    	console.log("updated");
     	refreshList();
     	// location.reload();
       // getPosts(postCategorySelect.val());
@@ -219,7 +203,6 @@ function vote(id, newScore){
   function refreshList(){
   	  if (url.indexOf("?media_type=") !== -1) {
     media_type = url.split("=")[1];
-    console.log("media type is "+media_type);
     getPairs(media_type);
   }
   // If there's no media_type we just get all posts as usual
