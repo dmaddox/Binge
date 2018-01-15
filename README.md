@@ -17,7 +17,7 @@ This is an application for sharing your favorite meal and drink pairings to go a
 
 ---------
 <p>
-<b> [View & Vote](https://fierce-basin-44180.herokuapp.com/view) </b>
+[View & Vote](https://fierce-basin-44180.herokuapp.com/view)
 </p>
  Get inspired by viewing what other members have submitted. Vote on your favorites using the up and down voting buttons.
 
@@ -25,7 +25,7 @@ This is an application for sharing your favorite meal and drink pairings to go a
 
 ## Binge Walk-through 
 
-![Demo](http://g.recordit.co/A50e5HOPlt.gif)
+[Demo](http://g.recordit.co/A50e5HOPlt.gif)
 
 
 ---------
