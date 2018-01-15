@@ -39,8 +39,6 @@ function verifyFill() {
     // Wont submit the post if we are missing any
     if (!email || !pw || !verify_pw) {
       event.preventDefault();
-      // event.stopPropagation();
-      console.log("Please complete all fields.");
       // call validateMessage to display the proper error message to the user
       $("#validation-message").append("Please complete all fields.");
       return;
@@ -53,7 +51,6 @@ function verifyPw() {
   if (!pw || !verify_pw) {return};
   // if pw's dont' match
   if (pw !== verify_pw) {
-    console.log("Passwords must match.");
     $('#btn-login').prop('disabled', true);
     // call validateMessage to display the proper error message to the user
     $("#validation-message").append("Your passwords don't match.");
@@ -62,3 +59,11 @@ function verifyPw() {
     $('#btn-login').prop('disabled', false);
   }
 };
+
+
+// get any error messages from passport authentication
+$.get("/signupform", function(result) {
+    $("#validation-message").append(result.message[0]);
+});
+
+

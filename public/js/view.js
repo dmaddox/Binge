@@ -1,11 +1,16 @@
 $(document).ready(function() {
 
-	console.log("view.js reporting for duty");
-
 var pairsContainer=$("#pair-table");
 
 var pairs;
 
+// document.getElementById("Book").addEventListener("click", function(){window.location.href = "?media_type=book"});
+
+// document.getElementById("Movie").addEventListener("click", function(){window.location.href = "?media_type=movie"});
+
+// document.getElementById("Show").addEventListener("click", function(){window.location.href = "?media_type=book"});
+
+$("input[type='radio']").on("click",function(){window.location.href="?media_type="+this.id});
 
 // The code below handles the case where we want to get blog posts for a specific author
   // Looks for a query param in the url for author_id
@@ -13,7 +18,6 @@ var pairs;
   var media_type;
   if (url.indexOf("?media_type=") !== -1) {
     media_type = url.split("=")[1];
-    console.log("media type is "+media_type);
     getPairs(media_type);
   }
   // If there's no media_type we just get all posts as usual
@@ -31,7 +35,6 @@ var pairs;
       media_type;
     }
     $.get("/api/view/" + media_type, function(data) {
-      console.log("Pairs", data);
       pairs = data;
       if (!pairs || !pairs.length) {
         displayEmpty(type);
@@ -53,12 +56,9 @@ var pairs;
     }
 
      pairsContainer.append(pairsToAdd);
-     console.log(pairsToAdd);
-
   }
 
   function createNewRow(pair){
-  	console.log("createNewRow running");
   	// create the row and fields
   	// add classes to the row and fields
   	// put api data into fields
@@ -70,7 +70,6 @@ var pairs;
   	var newPairMediaLink=$("<a>");
   	newPairMediaLink.attr("href","?media_type="+pair.media_type);
   	newPairMediaLink.text(pair.media_type);
-  	console.log(pair.media_type);
   	newPairMedia.append(newPairMediaLink);  	
   	newPairRow.append(newPairMedia);
 
@@ -148,7 +147,6 @@ var pairs;
 	var newPairScore=$("<td>");
   	newPairScore.addClass("pair-row-media");
   	newPairScore.text(pair.pairing_score);
-  	console.log(pair.pairing_score); 	
   	newPairRow.append(newPairScore);
 
   	return newPairRow;
@@ -164,21 +162,15 @@ $(document).on("click", "span.glyphicon-arrow-down", handleDownVote);
 
 function handleUpVote(){
 	var score=$(this).attr("pair-score");
-	console.log("pair score is "+score);
 	var newScore=parseInt(score)+1;
-	console.log("new score:"+newScore);
 	var id=$(this).attr("pair-id");
-	console.log("pair id is "+id);
 	vote(id, newScore);
 }
 
 function handleDownVote(){
 	var score=$(this).attr("pair-score");
-	console.log("pair score is "+score);
 	var newScore=parseInt(score)-1;
-	console.log("new score:"+newScore);
 	var id=$(this).attr("pair-id");
-	console.log("pair id is "+id);
 	vote(id, newScore);
 }
 
@@ -186,7 +178,6 @@ function vote(id, newScore){
 	var data = {pairing_score:newScore,pair_id:id}
 	$.post("/api/view",data)
     .done(function() {
-    	console.log("updated");
     	refreshList();
     	// location.reload();
       // getPosts(postCategorySelect.val());
@@ -212,7 +203,6 @@ function vote(id, newScore){
   function refreshList(){
   	  if (url.indexOf("?media_type=") !== -1) {
     media_type = url.split("=")[1];
-    console.log("media type is "+media_type);
     getPairs(media_type);
   }
   // If there's no media_type we just get all posts as usual

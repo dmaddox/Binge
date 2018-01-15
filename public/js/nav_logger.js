@@ -3,35 +3,31 @@ var loggedin;
 
 // Get user authentication status
 $.get("/loggedin", function(res) {
-    console.log("Getting logged in status!!");
-    console.log(res);
     if (res) {
         loggedIn = true;
-        console.log("user is logged in");
     } else {
         loggedIn = false;
-        console.log("user is not logged in");
     }
-
+}).then(function(response){
     navLogger();
 });
 
 // Switch out "Logout" vs. "Login" buttons based on authentication status
 function navLogger() {
     if (loggedIn) {
+        // make the login / logout button say "Logout"
         $("#nav-logger").text("Logout").attr("href", "/logout");
-        
+        // Log the user out on "logout" click
+        $("#nav-logger").on("click", function() {
+            $.get("/logout", function(result) {
+                result;
+            });
+        });
     } else {
+        // make the login / logout button say "Login"
         $("#nav-logger").text("Login").attr("href", "./user-login.html");
     }
 };
 
-// Log the user out on "logout" click
-if (loggedIn) {
-    $("#nav-logger").on("click", function() {
-        $.get("/logout", function(result) {
-            result;
-        });
-    });
-};
+
 

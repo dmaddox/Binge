@@ -14,7 +14,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!-- CSS -->
     <link rel="stylesheet" href="./css/login.css" type="text/css">
-    <link rel="stylesheet"  href="./css/reset.css" type="text/css">
+    <!-- <link rel="stylesheet"  href="./css/reset.css" type="text/css"> -->
 		<!-- GOOGLEFONTS -->
 		<link href="https://fonts.googleapis.com/css?family=Neucha" rel="stylesheet">
 
@@ -50,7 +50,7 @@
                         <div class="col-md-12">
                             <div class="form-wrap">
                             <h1>Log in with your email account</h1>
-                                <form role="form" action="/signin" method="post" id="login-form" autocomplete="off">
+                                <form role="form" action="/signinform" method="post" id="login-form" autocomplete="off">
                                     <div class="form-group">
                                         <label for="email" class="sr-only">Email</label>
                                         <input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com">
@@ -68,8 +68,8 @@
                                         <!-- space holder -->
                                     </div>
                                 </form>
-                                <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Forgot your password?</a>
-                                <hr>
+                                <!-- <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Forgot your password?</a>
+                                <hr> -->
                             </div> <!-- End .form-wrap -->
                         </div> <!-- /.col-xs-12 -->
                     </div> <!-- /.row -->
@@ -100,5 +100,11 @@
             <footer>Your guide to a full night of consuming.</footer>
     <!-- nav_logger.js handles the Login / Logout functionality in the navbar -->
     <script src="./js/nav_logger.js"></script>
+    <script>
+        // get any error messages from passport authentication
+        $.get("/signinform", function(result) {
+            $("#validation-message").append(result.message[0]);
+        });
+    </script>
     </body>
     </html>

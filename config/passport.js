@@ -35,10 +35,7 @@ var User = db.Users;
 
 			     // check to see if theres already a user with that email
 			     if (user) {
-			         	console.log("That email is already taken");
-			         return done(null, false, {
-							message: 'That email is already taken'
-			     			}); 
+			         return done(null, false, {message: 'That email is already taken.'}); 
 			     } else {
 			     	var userPassword = generateHash(password);
 			     	var data = {
@@ -46,22 +43,23 @@ var User = db.Users;
 						password: userPassword, //come back to match ana file
 					};
 					//create a new user
-					// console.log("req.body is: " + req.body);
-					db.Users.create(data).then(function(newUser, created) {
+					
+					db.Users.create(data).then(function(newUser) {
 						//if not a new user, don't make a new user
 						if (!newUser) {
 							return done(null, false);
 						}
 						if (newUser) {
-							console.log("Success! New user added to dB: " + newUser.email);
 							return done(null, newUser);
 						}
 					});
 			     };
 
-			 });    
-
-	     // });
+			 }).catch(function(err) {
+					return done(null, false, {
+						message: 'Something went wrong with your registration.'
+					});
+				});
 
 	 })); //End Local Signup
 
@@ -69,19 +67,12 @@ var User = db.Users;
 	 // SERIALIZE ===============================================================
 	 // =========================================================================
 	 passport.serializeUser(function(user, done) {
-	 	console.log("serializing");
-	 	console.log("done: " + done);
 	 	done(null, user.id);
-	 	console.log("done serializing user.id: " + user.id);
 	 });
 	 // deserialize user
 	 passport.deserializeUser(function(id, done) {
-	 	console.log("DEserializing id: " + id);
-	 	console.log("done: " + done);
 	 	User.findById(id).then(function(user) {
 	 		if (user) {
-	 			console.log(user.get());
-	 			debugger;
 	 			done(null, user);
 	 		} else {
 	 			done(user.errors, null);
@@ -103,14 +94,9 @@ var User = db.Users;
      },
      function(req, email, password, done) { // callback with email and password from our form
      	var User = db.Users;
-     	console.log("req : " + req.body);
-     	console.log("email : " + email);
-     	console.log("password : " + password);
-     	console.log("done : " + done);
 
      	//encrypt password
      	var isValidPassword = function(userpass, password) {
- 			console.log("isvalidPassword() is running");
 			return bCrypt.compareSync(password, userpass);
 		};
          // find a user whose email is the same as the forms email
@@ -120,26 +106,23 @@ var User = db.Users;
       	 	} }).then(function(user) {
 
       	 		if (!user) {
-      	 			console.log("No user by that email.");
 					return done(null, false, {
-						message: 'Email does not exist'
+						message: 'There is no account associated with that email.'
 					});
 				}
 				//if password isn't right, alert user
 				if (!isValidPassword(user.password, password)) {
-					console.log("Incorrect password.");
 					return done(null, false, {
 						message: 'Incorrect password.'
 					});
 				}
+
 				var userinfo = user.get();
-				console.log("Logging in..." + userinfo.email);
 				return done(null, userinfo);
 				//if an error is thrown, alert user
 				}).catch(function(err) {
-					console.log("Error:", err);
 					return done(null, false, {
-						message: 'Something went wrong with your Signin'
+						message: 'Something went wrong with your login.'
 					});
 				});
      }));  // End local login

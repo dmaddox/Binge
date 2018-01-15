@@ -44,25 +44,34 @@ module.exports = function(app, passport) {
   // Authentication Routes
   // =====================
 
+  // send signup errors to client side
+  app.get('/signupform', function(req, res) {
+      res.send({message: req.flash('error')});
+  });
+
+  // send log-in errors to client side
+  app.get('/signinform', function(req, res) {
+      res.send({message: req.flash('error')});
+  });
+
   // process the login form
-  app.post('/signin', passport.authenticate('local-login', {
+  app.post('/signinform', passport.authenticate('local-login', {
       successRedirect : '/add', // redirect to the secure profile section
       failureRedirect : '/signin', // redirect back to the signup page if there is an error
+      failureFlash: true
   }));
 
   // // process the signup form
-  app.post('/signup', passport.authenticate('local-signup', {
+  app.post('/signupform', passport.authenticate('local-signup', {
     successRedirect : '/add', // redirect to the add pairing page
     failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    failureFlash: true
   }));
 
   app.get('/loggedin', function(req, res) {
-    console.log("/loggedin route req is: " + req.user);
     if (req.user) {
-      console.log("TRUE-coming in hot!");
       res.send(true);
     } else {
-      console.log("FALSE-piddling out...");
       res.send(false);
     }
   });
