@@ -4,9 +4,7 @@
 This is an application for sharing your favorite meal and drink pairings to go along with a night of reading, watching TV or watching a movie.
 
 ---------
-<p>
-<b> [Signup](https://fierce-basin-44180.herokuapp.com/signup) </b>
-</p>
+[Signup](https://fierce-basin-44180.herokuapp.com/signup)
  Signup to submit your favorite entertainment and food or drink pairing.
 
 ---------
