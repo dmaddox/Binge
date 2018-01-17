@@ -59,99 +59,99 @@ $("input[type='radio']").on("click",function(){window.location.href="?media_type
   }
 
   function createNewRow(pair){
-  	// create the row and fields
-  	// add classes to the row and fields
-  	// put api data into fields
-  	//append fields to row
-  	var newPairRow=$("<tr>");
-  	newPairRow.addClass("pair-row");
-  	var newPairMedia=$("<td>");
-  	newPairMedia.addClass("pair-row-media");
-  	var newPairMediaLink=$("<a>");
-  	newPairMediaLink.attr("href","?media_type="+pair.media_type);
-  	newPairMediaLink.text(pair.media_type);
-  	newPairMedia.append(newPairMediaLink);  	
-  	newPairRow.append(newPairMedia);
+    // create the row and fields
+    // add classes to the row and fields
+    // put api data into fields
+    //append fields to row
+    var newPairRow=$("<tr>");
+    newPairRow.addClass("pair-row");
+    var newPairMedia=$("<td>");
+    newPairMedia.addClass("pair-row-media");
+    var newPairMediaLink=$("<a>");
+    newPairMediaLink.attr("href","?media_type="+pair.media_type);
+    newPairMediaLink.text(pair.media_type);
+    newPairMedia.append(newPairMediaLink);    
+    newPairRow.append(newPairMedia);
 
-  	var newPairTitle=$("<td>");
-  	newPairTitle.addClass("pair-row-title");
-  	var newPairTitleLink=$("<a>");
-  	if (pair.media_type=="book"||pair.media_type=="Book"){
-  	newPairTitleLink.attr("href","https://www.amazon.com/s/?url=search-alias%3Dstripbooks&field-keywords="+pair.media_title);
-  	} else {
-  	newPairTitleLink.attr("href","https://www.justwatch.com/us/search?q="+pair.media_title);
-  	}
-  	newPairTitleLink.attr("target","_blank");
-  	newPairTitleLink.text(pair.media_title);
-  	newPairTitle.append(newPairTitleLink);
-  	newPairRow.append(newPairTitle);  	  	
-  	
-  	var newPairDrink=$("<td>");
-  	newPairDrink.addClass("pair-row-drink");
-  	var newPairDrinkLink=$("<a>");
-  	if (pair.drink_url){
-	  	newPairDrinkLink.attr("href",pair.drink_url);
-	} else {
-		newPairDrinkLink.attr("href","https://www.google.com/search?q="+pair.drink_name+" recipe");
-	}
-  	newPairDrinkLink.attr("target","_blank");
-  	newPairDrinkLink.text(pair.drink_name);
-  	newPairDrink.append(newPairDrinkLink);
-  	newPairRow.append(newPairDrink);  	  	
-  	
-  	var newPairMeal=$("<td>");
-  	newPairMeal.addClass("pair-row-meal");
-  	var newPairMealLink=$("<a>");
-  	if (pair.recipe_url){
-  		newPairMealLink.attr("href",pair.recipe_url);
-  	} else {
-  		newPairMealLink.attr("href","https://www.google.com/search?q="+pair.food_name+" recipe");
-  	}
-  	newPairMealLink.attr("target","_blank");	
-  	newPairMealLink.text(pair.food_name);
-  	newPairMeal.append(newPairMealLink);
-  	newPairRow.append(newPairMeal);
+    var newPairTitle=$("<td>");
+    newPairTitle.addClass("pair-row-title");
+    var newPairTitleLink=$("<a>");
+    if (pair.media_type=="book"||pair.media_type=="Book"){
+    newPairTitleLink.attr("href","https://www.amazon.com/s/?url=search-alias%3Dstripbooks&field-keywords="+pair.media_title);
+    } else {
+    newPairTitleLink.attr("href","https://www.justwatch.com/us/search?q="+pair.media_title);
+    }
+    newPairTitleLink.attr("target","_blank");
+    newPairTitleLink.text(pair.media_title);
+    newPairTitle.append(newPairTitleLink);
+    newPairRow.append(newPairTitle);        
+    
+    var newPairDrink=$("<td>");
+    newPairDrink.addClass("pair-row-drink");
+    var newPairDrinkLink=$("<a>");
+    if (pair.drink_url){
+      newPairDrinkLink.attr("href",pair.drink_url);
+  } else {
+    newPairDrinkLink.attr("href","https://www.google.com/search?q="+pair.drink_name+" recipe");
+  }
+    newPairDrinkLink.attr("target","_blank");
+    newPairDrinkLink.text(pair.drink_name);
+    newPairDrink.append(newPairDrinkLink);
+    newPairRow.append(newPairDrink);        
+    
+    var newPairMeal=$("<td>");
+    newPairMeal.addClass("pair-row-meal");
+    var newPairMealLink=$("<a>");
+    if (pair.recipe_url){
+      newPairMealLink.attr("href",pair.recipe_url);
+    } else {
+      newPairMealLink.attr("href","https://www.google.com/search?q="+pair.food_name+" recipe");
+    }
+    newPairMealLink.attr("target","_blank");  
+    newPairMealLink.text(pair.food_name);
+    newPairMeal.append(newPairMealLink);
+    newPairRow.append(newPairMeal);
 
 // arrows start
-  	var newPairArrows=$("<td>");
-  	newPairArrows.addClass("pair-row-arrows");
+    var newPairArrows=$("<td>");
+    newPairArrows.addClass("pair-row-arrows");
 
-  	
-  	var newPairArrowsUpLink=$("<a>");
-  	newPairArrowsUpLink.attr("href","#");
+    
+    var newPairArrowsUpLink=$("<a>");
+    newPairArrowsUpLink.attr("href","#");
 
-  	 var newPairArrowsUpSpan=$("<span>");
-  	 newPairArrowsUpSpan.addClass("glyphicon glyphicon-arrow-up");
-  	 newPairArrowsUpSpan.attr("pair-id",pair.pair_id);
-  	 newPairArrowsUpSpan.attr("pair-score",pair.pairing_score);
+     var newPairArrowsUpSpan=$("<span>");
+     newPairArrowsUpSpan.addClass("glyphicon glyphicon-arrow-up");
+     newPairArrowsUpSpan.attr("pair-id",pair.pair_id);
+     newPairArrowsUpSpan.attr("pair-score",pair.pairing_score);
 
-  	newPairArrowsUpLink.append(newPairArrowsUpSpan);
+    newPairArrowsUpLink.append(newPairArrowsUpSpan);
 
-  	var newPairArrowsDownLink=$("<a>");
-  	newPairArrowsDownLink.attr("href","#");
+    var newPairArrowsDownLink=$("<a>");
+    newPairArrowsDownLink.attr("href","#");
 
-  	 var newPairArrowsDownSpan=$("<span>");
-  	 newPairArrowsDownSpan.addClass("glyphicon glyphicon-arrow-down");
-  	 newPairArrowsDownSpan.attr("pair-id",pair.pair_id);
-  	 newPairArrowsDownSpan.attr("pair-score",pair.pairing_score);
+     var newPairArrowsDownSpan=$("<span>");
+     newPairArrowsDownSpan.addClass("glyphicon glyphicon-arrow-down");
+     newPairArrowsDownSpan.attr("pair-id",pair.pair_id);
+     newPairArrowsDownSpan.attr("pair-score",pair.pairing_score);
 
-  	newPairArrowsDownLink.append(newPairArrowsDownSpan);
+    newPairArrowsDownLink.append(newPairArrowsDownSpan);
 
 
-  	newPairArrows.append(newPairArrowsUpLink);
-   	newPairArrows.append(newPairArrowsDownLink);
-  	newPairRow.append(newPairArrows);
+    newPairArrows.append(newPairArrowsUpLink);
+    newPairArrows.append(newPairArrowsDownLink);
+    newPairRow.append(newPairArrows);
 // arrows end
 
 
-	var newPairScore=$("<td>");
-  	newPairScore.addClass("pair-row-media");
-  	newPairScore.text(pair.pairing_score);
-  	newPairRow.append(newPairScore);
+  var newPairScore=$("<td>");
+    newPairScore.addClass("pair-row-media");
+    newPairScore.text(pair.pairing_score);
+    newPairRow.append(newPairScore);
 
-  	return newPairRow;
+    return newPairRow;
 
-  	//pushing the new row into the list should be handled by initializeRows func
+    //pushing the new row into the list should be handled by initializeRows func
 
   }
 
@@ -161,25 +161,25 @@ $(document).on("click", "span.glyphicon-arrow-up", handleUpVote);
 $(document).on("click", "span.glyphicon-arrow-down", handleDownVote);
 
 function handleUpVote(){
-	var score=$(this).attr("pair-score");
-	var newScore=parseInt(score)+1;
-	var id=$(this).attr("pair-id");
-	vote(id, newScore);
+  var score=$(this).attr("pair-score");
+  var newScore=parseInt(score)+1;
+  var id=$(this).attr("pair-id");
+  vote(id, newScore);
 }
 
 function handleDownVote(){
-	var score=$(this).attr("pair-score");
-	var newScore=parseInt(score)-1;
-	var id=$(this).attr("pair-id");
-	vote(id, newScore);
+  var score=$(this).attr("pair-score");
+  var newScore=parseInt(score)-1;
+  var id=$(this).attr("pair-id");
+  vote(id, newScore);
 }
 
 function vote(id, newScore){
-	var data = {pairing_score:newScore,pair_id:id}
-	$.post("/api/view",data)
+  var data = {pairing_score:newScore,pair_id:id}
+  $.post("/api/view",data)
     .done(function() {
-    	refreshList();
-    	// location.reload();
+      refreshList();
+      // location.reload();
       // getPosts(postCategorySelect.val());
     });
 }
@@ -201,7 +201,7 @@ function vote(id, newScore){
   }
 
   function refreshList(){
-  	  if (url.indexOf("?media_type=") !== -1) {
+      if (url.indexOf("?media_type=") !== -1) {
     media_type = url.split("=")[1];
     getPairs(media_type);
   }

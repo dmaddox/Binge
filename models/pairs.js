@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
     drink_name: DataTypes.STRING,
     drink_url: DataTypes.STRING(512),
     user_name: DataTypes.STRING,
-    user_id: DataTypes.INTEGER,
+    // user_id: DataTypes.INTEGER,
     pairing_score: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -31,7 +31,19 @@ module.exports = function(sequelize, DataTypes) {
       },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
-  })
+  }, 
+  {underscored: true}
+  );
+
+  Pairs.associate = function(models) {
+    // We're saying that a Pairs should belong to a User
+    // A Pair can't be created without an User due to the foreign key constraint
+    Pairs.belongsTo(models.Users, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
 
   return Pairs;
 
