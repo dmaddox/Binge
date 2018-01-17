@@ -60,7 +60,7 @@ require('./config/passport.js')(passport, db.Users);
 // =============================================================
 // add { force: true } in ".sync()" function if writing db schema for first time.
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync( ).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

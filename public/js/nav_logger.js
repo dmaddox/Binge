@@ -1,10 +1,12 @@
 // setup initial variable for storage user authentication status
 var loggedin;
+var currentUser;
 
 // Get user authentication status
 $.get("/loggedin", function(res) {
-    if (res) {
+    if (res[0]) {
         loggedIn = true;
+        currentUser = res[1];
     } else {
         loggedIn = false;
     }

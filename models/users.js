@@ -25,7 +25,15 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.ENUM('active', 'inactive'),
         defaultValue: 'active'
     }
-  });
+  }, 
+    {underscored: true}
+  );
+
+  Users.associate = function(models) {
+    // Associating Users with Pairs
+    // When an Users is deleted, also delete any associated Pairs
+    Users.hasMany(models.Pairs);
+  };
 
   return Users;
 

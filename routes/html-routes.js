@@ -70,7 +70,7 @@ module.exports = function(app, passport) {
 
   app.get('/loggedin', function(req, res) {
     if (req.user) {
-      res.send(true);
+      res.send([true, req.user.id]);
     } else {
       res.send(false);
     }

@@ -5,8 +5,19 @@ module.exports = function(app) {
   // Get route for getting all of the pairings
   app.get("/api/view", function(req, res) {
     // findAll to return all entries
-    db.Pairs.findAll({}).then(function(dbPairing) {
+    db.Pairs.findAll().then(function(dbPairing) {
       res.json(dbPairing);
+    });
+  });
+
+  // Get route for getting username from userID
+  app.get("/api/view/userid/:id", function(req, res) {
+    // findAll to return all entries
+    db.Users.findOne({where: {
+      id: req.params.id
+    }}).then(function(dbUser) {
+      console.log("view-api-routes says dbUser is: " + dbUser);
+      res.json(dbUser);
     });
   });
 
